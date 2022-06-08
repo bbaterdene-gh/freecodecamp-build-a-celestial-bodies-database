@@ -52,7 +52,8 @@ CREATE TABLE public.galaxy (
     name character varying NOT NULL,
     planet_size integer NOT NULL,
     age_in_millions_of_years numeric,
-    has_life boolean
+    has_life boolean,
+    star_id integer
 );
 
 
@@ -86,7 +87,8 @@ ALTER SEQUENCE public.galaxy_id_seq OWNED BY public.galaxy.galaxy_id;
 
 CREATE TABLE public.infos (
     infos_id integer NOT NULL,
-    name character varying NOT NULL
+    name character varying NOT NULL,
+    more character varying
 );
 
 
@@ -267,30 +269,78 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.galaxy VALUES (1, 'xaxa', 13, 13.5, false, NULL);
+INSERT INTO public.galaxy VALUES (2, 'xaxa', 1, 13.5, false, 1);
+INSERT INTO public.galaxy VALUES (3, 'xaxa', 1, 13.5, false, 1);
+INSERT INTO public.galaxy VALUES (4, 'xaxa', 1, 13.5, false, 1);
+INSERT INTO public.galaxy VALUES (5, 'xaxa', 1, 13.5, false, 1);
+INSERT INTO public.galaxy VALUES (6, 'xaxa', 1, 13.5, false, 1);
 
 
 --
 -- Data for Name: infos; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.infos VALUES (1, 'xaxa', 'xaxa');
+INSERT INTO public.infos VALUES (2, 'xaxa', 'xaxaxa');
+INSERT INTO public.infos VALUES (3, 'xaxa', 'xaxaxa');
 
 
 --
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.moon VALUES (1, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (2, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (3, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (4, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (5, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (6, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (7, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (8, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (9, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (10, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (11, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (12, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (13, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (14, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (15, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (16, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (17, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (18, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (19, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (20, 'xaxa', 13, 1, 12.5);
+INSERT INTO public.moon VALUES (21, 'xaxa', 13, 1, 12.5);
 
 
 --
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.planet VALUES (1, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (2, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (3, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (4, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (5, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (6, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (7, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (8, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (9, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (10, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (11, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
+INSERT INTO public.planet VALUES (12, 'xaxa', 13.5, 'asdasd', false, false, 1, 1.0);
 
 
 --
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.star VALUES (1, 'xaxa', 1, 13.5, false);
+INSERT INTO public.star VALUES (2, 'xaxa', 1, 13.5, false);
+INSERT INTO public.star VALUES (3, 'xaxa', 1, 13.5, false);
+INSERT INTO public.star VALUES (4, 'xaxa', 1, 13.5, false);
+INSERT INTO public.star VALUES (5, 'xaxa', 1, 13.5, false);
+INSERT INTO public.star VALUES (6, 'xaxa', 1, 13.5, false);
 
 
 --
@@ -406,6 +456,14 @@ ALTER TABLE ONLY public.star
 
 ALTER TABLE ONLY public.star
     ADD CONSTRAINT star_unique UNIQUE (star_id);
+
+
+--
+-- Name: galaxy galaxy_star_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_star_id_fkey FOREIGN KEY (star_id) REFERENCES public.star(star_id);
 
 
 --
